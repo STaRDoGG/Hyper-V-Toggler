@@ -139,6 +139,7 @@
         ElseIf bAction = True Then
             If output.Contains("The operation completed successfully") Then
                 ' Great success, whilst performing the BCD action
+                SetChangeInfo() 'TODO: Should add a handler here to only set the change info NOT on BCD backing up.
                 Return 1
             Else
                 ' Something pooped out
@@ -198,6 +199,9 @@
 
         ' Set our app title in the label, since we've removed the title bar for the sake of a theme
         lblTitle.Text = Me.Text & " [βeta]"
+
+        ' Determine if user has rebooted since the last toggle
+        ComparePending()
 
         ' Check the current state of Hyper-V & select the opposite option to make the user's life easier
         Dim intResult As Integer = BCDEdit()
@@ -284,5 +288,21 @@
             mousePos.Offset(mouseOffset.X, mouseOffset.Y)
             Location = mousePos
         End If
+    End Sub
+
+    Private Sub SetChangeInfo()
+        ' Stores the time of the last successful BCD change by this app, and that a reboot is still pending (as of now, this is still unused, see TODO)
+        My.Settings.Pending = 1
+        My.Settings.LastChange = DateTime.Now.ToString
+    End Sub
+
+    Private Sub ComparePending()
+        ' Determines whether the user has rebooted since the last successful BCDEdit by this app (still unused as of now. See TODO)
+        ' Note: during quick setup, the storing of the Settings is working, however, while trying to read them here in app start, they appear to be reset for some reason.
+
+        Dim intPending As Integer = My.Settings.Pending
+        Dim strLastChange As String = My.Settings.LastChange
+        Dim strLastReboot As String = My.Settings.LastReboot
+
     End Sub
 End Class
