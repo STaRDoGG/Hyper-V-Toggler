@@ -1,14 +1,11 @@
 ﻿Public Class frmMain
 
-    ' NOTE: There's a way to make a "dual boot" w/Hypervisor On/Off as options
-    ' See: http://jorgequestforknowledge.wordpress.com/2012/05/26/using-both-microsoft-hyper-v-and-vmware-workstation-on-the-same-machine/
-
     'TODO: Technically, we could tighten up this code by putting all of the message boxes in their own function, and just calling them, with a result, but it's not high priority right now.
     'TODO: Should we add confirmation messageboxes before the user toggles a Hyper-V setting?
     'TODO: We SHOULD set a registry flag (MySettings) to know, & alert the user, that a reboot is still pending from a previous toggle, including adding this alert to the lblState label.
     '      See Time-Since-Reboot code here: http://www.c-sharpcorner.com/uploadfile/scottlysle/determine-the-time-since-the-last-boot-up-in-visual-basic3/
     '      Idea is: set Last Reboot time as a reg key, Current Time as a reg key, and a "0/1 Pending Reboot" Flag as a reg key, all for comparison purposes.
-    'TODO: Maybe add some Server 2012 (or wheatever) code for toggling off the "Hyper-V Role"? There's no Role in regular Windows that I an tell, which is why I've use the BCDEdit method.
+    'TODO: Maybe add some Server 2012 (or whatever) code for toggling off the "Hyper-V Role"? There's no Role in regular Windows that I can tell, which is why I've use the BCDEdit method.
 
     ' As of now (1/20/2014 1:43 PM) this app is considered "done", unless someone points out bugs, feature requests, etc.
 
@@ -133,13 +130,13 @@
         p.WaitForExit()
 
         If output.Contains("The boot configuration data store could not be opened") Then
-            ' Must not be running this app as Admin; GOOD DAY, SIR!.
+            ' Must not be running this app as Admin; GOOD DAY, SIR!
             MessageBox.Show("Problem communicating with BCD, make sure to run this app as Administrator first." & Environment.NewLine & Environment.NewLine & "Exiting now.", "Mulligan", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Application.Exit()
         ElseIf bAction = True Then
             If output.Contains("The operation completed successfully") Then
                 ' Great success, whilst performing the BCD action
-                SetChangeInfo() 'TODO: Should add a handler here to only set the change info NOT on BCD backing up.
+                SetChangeInfo() 'TODO: Should add a handler here to only set the change info NOT on BCD backing up
                 Return 1
             Else
                 ' Something pooped out

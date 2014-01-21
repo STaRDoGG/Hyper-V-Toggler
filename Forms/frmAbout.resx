@@ -118,10 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Label1.Text" xml:space="preserve">
-    <value>In VMWare's eyes you must uninstall Hyper-V if you want to use their software, or at least disable the Hyper-V Role first, however, if you're  on  regular (non-server edition) of Windows, there's no way to disable the Role (that I know of).</value>
-  </data>
-  <data name="Label3.Text" xml:space="preserve">
-    <value>That's where this utility comes in handy. Simply choose the Disable option to disable Hyper-V on your computer, then reboot so that you can run VMWare. When you need to use Hyper-V again, select the Enable option and reboot again. This saves you from having to completely uninstall Hyper-V just to use VMWare. Unfortunately, there's no current way to run the 2 side-by-side as of the writing of this tool.</value>
+    <value>In VMWare's eyes you must uninstall Hyper-V if you want to use their software, or at least disable the Hyper-V Role first, however, if you're on regular (non-server edition) of Windows, there's no way to disable the Role (that I know of), and unfortunately, there's no current way to run the 2 side-by-side as of the writing of this tool. That's where this utility comes in handy ...</value>
   </data>
   <data name="Label6.Text" xml:space="preserve">
     <value>Simple.

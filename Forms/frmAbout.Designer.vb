@@ -25,7 +25,6 @@ Partial Class frmAbout
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAbout))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.llGD = New System.Windows.Forms.LinkLabel()
         Me.picLogo = New System.Windows.Forms.PictureBox()
@@ -43,7 +42,7 @@ Partial Class frmAbout
         '
         Me.Label1.Location = New System.Drawing.Point(10, 100)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(591, 35)
+        Me.Label1.Size = New System.Drawing.Size(591, 58)
         Me.Label1.TabIndex = 2
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
@@ -59,20 +58,12 @@ Partial Class frmAbout
         Me.Label2.Text = "Ever have a need to run VMWare© on the same computer that you have Hyper-V instal" & _
     "led on, but can't?"
         '
-        'Label3
-        '
-        Me.Label3.Location = New System.Drawing.Point(10, 135)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(587, 53)
-        Me.Label3.TabIndex = 4
-        Me.Label3.Text = resources.GetString("Label3.Text")
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(251, Byte), Integer), CType(CType(203, Byte), Integer), CType(CType(33, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(10, 526)
+        Me.Label5.Location = New System.Drawing.Point(10, 496)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(70, 13)
         Me.Label5.TabIndex = 6
@@ -83,7 +74,7 @@ Partial Class frmAbout
         Me.llGD.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.llGD.AutoSize = True
         Me.llGD.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.llGD.Location = New System.Drawing.Point(77, 526)
+        Me.llGD.Location = New System.Drawing.Point(77, 496)
         Me.llGD.Name = "llGD"
         Me.llGD.Size = New System.Drawing.Size(83, 13)
         Me.llGD.TabIndex = 7
@@ -127,7 +118,7 @@ Partial Class frmAbout
         '
         'Label6
         '
-        Me.Label6.Location = New System.Drawing.Point(10, 212)
+        Me.Label6.Location = New System.Drawing.Point(10, 182)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(585, 220)
         Me.Label6.TabIndex = 18
@@ -137,7 +128,7 @@ Partial Class frmAbout
         '
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(251, Byte), Integer), CType(CType(203, Byte), Integer), CType(CType(33, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(10, 197)
+        Me.Label8.Location = New System.Drawing.Point(10, 167)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(585, 15)
         Me.Label8.TabIndex = 20
@@ -147,7 +138,7 @@ Partial Class frmAbout
         '
         Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(251, Byte), Integer), CType(CType(203, Byte), Integer), CType(CType(33, Byte), Integer))
-        Me.Label7.Location = New System.Drawing.Point(10, 432)
+        Me.Label7.Location = New System.Drawing.Point(10, 402)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(585, 15)
         Me.Label7.TabIndex = 22
@@ -155,7 +146,7 @@ Partial Class frmAbout
         '
         'Label4
         '
-        Me.Label4.Location = New System.Drawing.Point(10, 447)
+        Me.Label4.Location = New System.Drawing.Point(10, 417)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(585, 51)
         Me.Label4.TabIndex = 21
@@ -166,7 +157,7 @@ Partial Class frmAbout
         Me.llJSE.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.llJSE.AutoSize = True
         Me.llJSE.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.llJSE.Location = New System.Drawing.Point(166, 526)
+        Me.llJSE.Location = New System.Drawing.Point(166, 496)
         Me.llJSE.Name = "llJSE"
         Me.llJSE.Size = New System.Drawing.Size(148, 13)
         Me.llJSE.TabIndex = 23
@@ -179,7 +170,7 @@ Partial Class frmAbout
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(621, 548)
+        Me.ClientSize = New System.Drawing.Size(621, 523)
         Me.Controls.Add(Me.llJSE)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label4)
@@ -190,7 +181,6 @@ Partial Class frmAbout
         Me.Controls.Add(Me.lblTitle)
         Me.Controls.Add(Me.llGD)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -210,7 +200,6 @@ Partial Class frmAbout
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents llGD As System.Windows.Forms.LinkLabel
     Friend WithEvents picLogo As System.Windows.Forms.PictureBox
