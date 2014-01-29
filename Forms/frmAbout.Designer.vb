@@ -157,7 +157,7 @@ Partial Class frmAbout
         Me.llJSE.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.llJSE.AutoSize = True
         Me.llJSE.LinkColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.llJSE.Location = New System.Drawing.Point(166, 496)
+        Me.llJSE.Location = New System.Drawing.Point(160, 496)
         Me.llJSE.Name = "llJSE"
         Me.llJSE.Size = New System.Drawing.Size(148, 13)
         Me.llJSE.TabIndex = 23

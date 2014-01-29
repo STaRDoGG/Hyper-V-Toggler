@@ -129,7 +129,9 @@ When you need to use Hyper-V again, do the opposite; select "Enable Hyper-V", (e
 
 I've done this quite safely for a long time now, however as a precaution, if something should ever happen to corrupt your BCD automatic BCD backups are created just before you toggle on or off Hyper-V, and you can try using the "Restore BCD" option. This option is only enabled if it finds the backup in your System folder.
 
-Also, as a convenience, you can click the orange label to fire up the Hyper-V Manager.
+Be sure to also read all of the tooltips, which give more details in some cases.
+
+Finally, as a convenience, you can click the orange label to fire up the Hyper-V Manager.
 
 NOTE: This is the first release, and therefore is considered Beta. It probably has some minor bugs, so feel free to report them.</value>
   </data>

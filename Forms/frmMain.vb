@@ -58,11 +58,18 @@
 
         ElseIf radRestore.Checked Then
             ' Restore backed up BCD in case of catastrophe
-            If MessageBox.Show("Are you sure you want to restore your backed-up BCD?", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
 
-                If Not BCDEdit("/import " & Environment.SystemDirectory.ToString() & "\BackupBCD.bcd", True) = 1 Then
+            ' Display the list of available backed up BCD files
+            With frmBackups
+                .Visible = False
+                .ShowDialog()
+            End With
+
+            If radRestore.Tag.ToString.Length > 0 AndAlso MessageBox.Show("Are you sure you want to restore your backed-up BCD? (" & radRestore.Tag.ToString & ")", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+
+                If Not BCDEdit("/import " & radRestore.Tag.ToString, True) = 1 Then
                     ' Importing the backed up bcd file failed, deliver the bad news
-                    MessageBox.Show("Importing the backed up bcd file failed, sorry!" & Environment.NewLine & Environment.NewLine & "You could ensure that you're running this as Admin, maybe that's the problem.", "Dang!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    MessageBox.Show("Importing the backed up BCD file failed, sorry!" & Environment.NewLine & Environment.NewLine & "You could ensure that you're running this as Admin, maybe that's the problem.", "Dang!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 Else
                     ' Successfully imported the backed up bcd file
@@ -172,7 +179,8 @@
         ' Backs up the current BCD settings
         ' Returns 0 or 1 on Failure or Success, respectively
 
-        BackupBCD = BCDEdit("/export " & Environment.SystemDirectory.ToString() & "\BackupBCD.bcd", True)
+        'BackupBCD = BCDEdit("/export " & Environment.SystemDirectory.ToString() & "\BackupBCD" & ".bcd", True)
+        BackupBCD = BCDEdit("/export " & Environment.SystemDirectory.ToString() & "\" & String.Format("BCDBackup-{0}.bcdx", Now.ToString("MM-dd-yyyy_hh-mm-ss")), True)
 
         ' Add a little GUI feedback
         If BackupBCD = 1 Then
@@ -210,9 +218,13 @@
 
         ' --
 
-        ' Check if we've backed up the .bcd during a previous change, if so, enable the Restore option
-        If System.IO.File.Exists(Environment.SystemDirectory.ToString() & "\BackupBCD.bcd") Then
+        ' Check if we've backed up any BCD's during a previous change, if so, enable the Restore option TODO: Need to detect any .bcdX files now
+        radRestore.Tag = "Checking"
+        frmBackups.Show()
+
+        If radRestore.Tag.ToString = "Found" Then
             Me.radRestore.Enabled = True
+            radRestore.Tag = ""
         End If
 
     End Sub
@@ -293,4 +305,9 @@
         Dim strLastReboot As String = My.Settings.LastReboot
 
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+    End Sub
+
 End Class

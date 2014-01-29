@@ -29,20 +29,22 @@ Partial Class frmMain
         Me.radRestore = New System.Windows.Forms.RadioButton()
         Me.radEnable = New System.Windows.Forms.RadioButton()
         Me.radDisable = New System.Windows.Forms.RadioButton()
-        Me.picLogo = New System.Windows.Forms.PictureBox()
         Me.lblState = New System.Windows.Forms.Label()
         Me.lblState2 = New System.Windows.Forms.Label()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnAbout = New System.Windows.Forms.Button()
-        Me.btnGo = New System.Windows.Forms.Button()
         Me.lblTitle = New System.Windows.Forms.Label()
+        Me.radDualBoot = New System.Windows.Forms.RadioButton()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.picLogo = New System.Windows.Forms.PictureBox()
         Me.btnMinimize = New System.Windows.Forms.Button()
         Me.btnExit = New System.Windows.Forms.Button()
-        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.btnAbout = New System.Windows.Forms.Button()
+        Me.btnGo = New System.Windows.Forms.Button()
         Me.StatusStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'llGD
@@ -69,13 +71,14 @@ Partial Class frmMain
         Me.radRestore.AutoSize = True
         Me.radRestore.Enabled = False
         Me.radRestore.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(210, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.radRestore.Location = New System.Drawing.Point(20, 74)
+        Me.radRestore.Location = New System.Drawing.Point(20, 87)
         Me.radRestore.Name = "radRestore"
         Me.radRestore.Size = New System.Drawing.Size(96, 17)
         Me.radRestore.TabIndex = 9
-        Me.radRestore.TabStop = True
         Me.radRestore.Text = "RESTORE BCD"
-        Me.ToolTips.SetToolTip(Me.radRestore, resources.GetString("radRestore.ToolTip"))
+        Me.ToolTips.SetToolTip(Me.radRestore, "Each time you do a Hyper-V Enable or Disable, your current BCD is backed up to yo" & _
+        "ur System folder case of a disaster." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "If you should need to restore it, you ca" & _
+        "n use this option.")
         Me.radRestore.UseVisualStyleBackColor = True
         '
         'radEnable
@@ -83,11 +86,10 @@ Partial Class frmMain
         Me.radEnable.AutoSize = True
         Me.radEnable.Checked = True
         Me.radEnable.ForeColor = System.Drawing.Color.White
-        Me.radEnable.Location = New System.Drawing.Point(20, 28)
+        Me.radEnable.Location = New System.Drawing.Point(20, 18)
         Me.radEnable.Name = "radEnable"
         Me.radEnable.Size = New System.Drawing.Size(110, 17)
         Me.radEnable.TabIndex = 7
-        Me.radEnable.TabStop = True
         Me.radEnable.Text = "ENABLE HYPER-V"
         Me.ToolTips.SetToolTip(Me.radEnable, resources.GetString("radEnable.ToolTip"))
         Me.radEnable.UseVisualStyleBackColor = True
@@ -96,25 +98,13 @@ Partial Class frmMain
         '
         Me.radDisable.AutoSize = True
         Me.radDisable.ForeColor = System.Drawing.Color.White
-        Me.radDisable.Location = New System.Drawing.Point(20, 51)
+        Me.radDisable.Location = New System.Drawing.Point(20, 41)
         Me.radDisable.Name = "radDisable"
         Me.radDisable.Size = New System.Drawing.Size(113, 17)
         Me.radDisable.TabIndex = 8
         Me.radDisable.Text = "DISABLE HYPER-V"
         Me.ToolTips.SetToolTip(Me.radDisable, resources.GetString("radDisable.ToolTip"))
         Me.radDisable.UseVisualStyleBackColor = True
-        '
-        'picLogo
-        '
-        Me.picLogo.Cursor = System.Windows.Forms.Cursors.SizeAll
-        Me.picLogo.Image = Global.hyper_v_toggler.My.Resources.Resources.GeekDrop
-        Me.picLogo.Location = New System.Drawing.Point(12, 9)
-        Me.picLogo.Name = "picLogo"
-        Me.picLogo.Size = New System.Drawing.Size(32, 32)
-        Me.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.picLogo.TabIndex = 13
-        Me.picLogo.TabStop = False
-        Me.ToolTips.SetToolTip(Me.picLogo, "You can move this window around by dragging this logo.")
         '
         'lblState
         '
@@ -162,6 +152,7 @@ Partial Class frmMain
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer))
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.radDualBoot)
         Me.Panel1.Controls.Add(Me.radRestore)
         Me.Panel1.Controls.Add(Me.btnAbout)
         Me.Panel1.Controls.Add(Me.btnGo)
@@ -171,40 +162,6 @@ Partial Class frmMain
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(467, 117)
         Me.Panel1.TabIndex = 9
-        '
-        'btnAbout
-        '
-        Me.btnAbout.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(62, Byte), Integer), CType(CType(62, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.btnAbout.FlatAppearance.BorderSize = 2
-        Me.btnAbout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAbout.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAbout.ForeColor = System.Drawing.Color.White
-        Me.btnAbout.Image = Global.hyper_v_toggler.My.Resources.Resources.about
-        Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnAbout.Location = New System.Drawing.Point(302, 40)
-        Me.btnAbout.Name = "btnAbout"
-        Me.btnAbout.Size = New System.Drawing.Size(134, 39)
-        Me.btnAbout.TabIndex = 10
-        Me.btnAbout.Text = "ABOUT"
-        Me.btnAbout.UseVisualStyleBackColor = True
-        '
-        'btnGo
-        '
-        Me.btnGo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(62, Byte), Integer), CType(CType(62, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.btnGo.FlatAppearance.BorderSize = 2
-        Me.btnGo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGo.ForeColor = System.Drawing.Color.White
-        Me.btnGo.Image = Global.hyper_v_toggler.My.Resources.Resources.arrow
-        Me.btnGo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnGo.Location = New System.Drawing.Point(159, 40)
-        Me.btnGo.Name = "btnGo"
-        Me.btnGo.Size = New System.Drawing.Size(137, 39)
-        Me.btnGo.TabIndex = 6
-        Me.btnGo.Text = "DO IT"
-        Me.btnGo.UseVisualStyleBackColor = True
         '
         'lblTitle
         '
@@ -216,6 +173,39 @@ Partial Class frmMain
         Me.lblTitle.Size = New System.Drawing.Size(199, 21)
         Me.lblTitle.TabIndex = 10
         Me.lblTitle.Text = "GeekDrop Hyper-V Toggler"
+        '
+        'radDualBoot
+        '
+        Me.radDualBoot.AutoSize = True
+        Me.radDualBoot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.radDualBoot.Location = New System.Drawing.Point(20, 64)
+        Me.radDualBoot.Name = "radDualBoot"
+        Me.radDualBoot.Size = New System.Drawing.Size(127, 17)
+        Me.radDualBoot.TabIndex = 10
+        Me.radDualBoot.Text = "CREATE DUAL BOOT"
+        Me.ToolTips.SetToolTip(Me.radDualBoot, resources.GetString("radDualBoot.ToolTip"))
+        Me.radDualBoot.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(335, 23)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 14
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'picLogo
+        '
+        Me.picLogo.Cursor = System.Windows.Forms.Cursors.SizeAll
+        Me.picLogo.Image = Global.hyper_v_toggler.My.Resources.Resources.GeekDrop
+        Me.picLogo.Location = New System.Drawing.Point(12, 9)
+        Me.picLogo.Name = "picLogo"
+        Me.picLogo.Size = New System.Drawing.Size(32, 32)
+        Me.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.picLogo.TabIndex = 13
+        Me.picLogo.TabStop = False
+        Me.ToolTips.SetToolTip(Me.picLogo, "You can move this window around by dragging this logo.")
         '
         'btnMinimize
         '
@@ -243,12 +233,47 @@ Partial Class frmMain
         Me.btnExit.TabIndex = 11
         Me.btnExit.UseVisualStyleBackColor = True
         '
+        'btnAbout
+        '
+        Me.btnAbout.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(62, Byte), Integer), CType(CType(62, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnAbout.FlatAppearance.BorderSize = 2
+        Me.btnAbout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.btnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAbout.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAbout.ForeColor = System.Drawing.Color.White
+        Me.btnAbout.Image = Global.hyper_v_toggler.My.Resources.Resources.about
+        Me.btnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnAbout.Location = New System.Drawing.Point(302, 40)
+        Me.btnAbout.Name = "btnAbout"
+        Me.btnAbout.Size = New System.Drawing.Size(134, 39)
+        Me.btnAbout.TabIndex = 12
+        Me.btnAbout.Text = "ABOUT"
+        Me.btnAbout.UseVisualStyleBackColor = True
+        '
+        'btnGo
+        '
+        Me.btnGo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(62, Byte), Integer), CType(CType(62, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnGo.FlatAppearance.BorderSize = 2
+        Me.btnGo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(122, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGo.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGo.ForeColor = System.Drawing.Color.White
+        Me.btnGo.Image = Global.hyper_v_toggler.My.Resources.Resources.arrow
+        Me.btnGo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnGo.Location = New System.Drawing.Point(159, 40)
+        Me.btnGo.Name = "btnGo"
+        Me.btnGo.Size = New System.Drawing.Size(137, 39)
+        Me.btnGo.TabIndex = 11
+        Me.btnGo.Text = "DO IT"
+        Me.btnGo.UseVisualStyleBackColor = True
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(48, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(491, 237)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.picLogo)
         Me.Controls.Add(Me.btnMinimize)
         Me.Controls.Add(Me.btnExit)
@@ -265,11 +290,11 @@ Partial Class frmMain
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Microsoft Windows© Hyper-V Toggler"
-        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.picLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -290,5 +315,7 @@ Partial Class frmMain
     Friend WithEvents btnExit As System.Windows.Forms.Button
     Friend WithEvents btnMinimize As System.Windows.Forms.Button
     Friend WithEvents picLogo As System.Windows.Forms.PictureBox
+    Friend WithEvents radDualBoot As System.Windows.Forms.RadioButton
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

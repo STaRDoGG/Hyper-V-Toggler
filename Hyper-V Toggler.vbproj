@@ -100,6 +100,12 @@
     <Compile Include="Forms\frmAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmBackups.Designer.vb">
+      <DependentUpon>frmBackups.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBackups.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Forms\frmAbout.resx">
       <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBackups.resx">
+      <DependentUpon>frmBackups.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>

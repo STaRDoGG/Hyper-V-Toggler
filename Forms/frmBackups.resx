@@ -117,39 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ToolTips.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="radEnable.ToolTip" xml:space="preserve">
-    <value>Enables Hyper-V on your computer.
-
-Enabling Hyper-V will prevent VMWare (and similar utilities) that won't run along-side of Hyper-V.
-
-An automatic backup is made of your current BCD settings before the change is made, restorable later via the "Restore BCD" option.</value>
-  </data>
-  <data name="radDisable.ToolTip" xml:space="preserve">
-    <value>Disables Hyper-V on your computer, allowing you to run VMWare and similar utilities that won't otherwise allow you to run them while Hyper-V is installed.
-
-An automatic backup is made of your current BCD settings before the change is made, restorable later via the "Restore BCD" option.</value>
-  </data>
-  <metadata name="StatusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>114, 17</value>
-  </metadata>
-  <data name="radDualBoot.ToolTip" xml:space="preserve">
-    <value>*READ CLOSELY FIRST*
-
-Running this options will attempt to create a dual boot setup on this computer!
-
-This means when you boot up your computer you'll get a choice to either boot normally (without Hyper-V enambed), OR boot without Hyper-V enabled.
-Everything else will be the same, and if you don't make a selection you'll boot into your default choice after a default amount of seconds.
-
-When you run this, you'll be asked to choose whether your default boot will be with or without Hyper-V enabled.
-
-NOTE: As of right now, this program only CREATES the dual boot and sets your default boot preference; it does NOT reverse it. To do that you can Google
-a free program named "EasyBCD" which allows you to easily edit your multi-boot options.
-
-An automatic backup is made of your current BCD settings before the change is made, restorable later via the "Restore BCD" option.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
