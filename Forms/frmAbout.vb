@@ -17,6 +17,6 @@
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles llJSE.LinkClicked
-        System.Diagnostics.Process.Start("http://about.me/scott.elblein")
+        Process.Start("http://about.me/scott.elblein")
     End Sub
 End Class

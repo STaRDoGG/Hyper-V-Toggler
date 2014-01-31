@@ -1,4 +1,6 @@
-﻿Public Class frmMain
+﻿Imports System.IO
+
+Public Class frmMain
 
     ' For the form moving code
     Private mouseOffset As Point
@@ -21,7 +23,7 @@
 
             ' Turn off Hyper-V
             If Not BCDEdit("/set hypervisorlaunchtype Off", True) = 1 Then
-                ' Disabling hypervisorlaunchtype failed, deliver the bad news
+                ' Disabling hypervisorlaunchtype failed, deliver the sad news
                 MessageBox.Show("Disabling Hyper-V failed, sorry!" & Environment.NewLine & Environment.NewLine & "You could ensure that you're running this as Admin, maybe that's the problem.", "Dang!", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
             Else
@@ -56,37 +58,52 @@
                 lblState2.Text = "Enabled [Pending reboot]."
             End If
 
-        ElseIf radRestore.Checked Then
-            ' Restore backed up BCD in case of catastrophe
+        ElseIf radDualBoot.Checked Then
 
-            ' Display the list of available backed up BCD files
-            With frmBackups
-                .Visible = False
-                .ShowDialog()
-            End With
+            Dim dResult As System.Windows.Forms.DialogResult = MessageBox.Show("Do you want your MAIN boot to have Hyper-V Enabled?" & Environment.NewLine & Environment.NewLine & "[No] to have Hyper-V Enabled as your SECOND boot option", "Do you want Hyper-V as your Main or Second boot option?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question)
 
-            If radRestore.Tag.ToString.Length > 0 AndAlso MessageBox.Show("Are you sure you want to restore your backed-up BCD? (" & radRestore.Tag.ToString & ")", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+            If dResult = DialogResult.Yes Then
+                ' User selected to have Hyper-V enabled on their main OS (boot)
 
-                If Not BCDEdit("/import " & radRestore.Tag.ToString, True) = 1 Then
-                    ' Importing the backed up bcd file failed, deliver the bad news
-                    MessageBox.Show("Importing the backed up BCD file failed, sorry!" & Environment.NewLine & Environment.NewLine & "You could ensure that you're running this as Admin, maybe that's the problem.", "Dang!", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return
-                Else
-                    ' Successfully imported the backed up bcd file
-                    strType = "Your backed up BCD has been "
-                    strChoice = "imported [Pending reboot]."
-                End If
+            ElseIf dResult = DialogResult.No Then
+                ' User selected to have Hyper-V enabled on their second OS (boot)
+
             Else
-                ' User backed out by clicking the "No" button, so just exit the action
+                ' User clicked Cancel
                 Return
             End If
-        End If
 
-        ' --
+        ElseIf radRestore.Checked Then
+                ' Restore backed up BCD in case of catastrophe
 
-        If strChoice.Length > 0 AndAlso MessageBox.Show(strType & strChoice & Environment.NewLine & Environment.NewLine & " You need to restart your computer for it to take effect, want to do that right now?" & Environment.NewLine & Environment.NewLine & " (Be sure to save everything you need to first.)", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            RebootComputer()
-        End If
+                ' Display the list of available backed up BCD files
+                With frmBackups
+                    .Visible = False
+                    .ShowDialog()
+                End With
+
+                If radRestore.Tag.ToString.Length > 0 AndAlso MessageBox.Show("Are you sure you want to restore your backed-up BCD? (" & radRestore.Tag.ToString & ")", "Please Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) = DialogResult.Yes Then
+
+                    If Not BCDEdit("/import " & radRestore.Tag.ToString, True) = 1 Then
+                        ' Importing the backed up bcd file failed, deliver the bad news
+                        MessageBox.Show("Importing the backed up BCD file failed, sorry!" & Environment.NewLine & Environment.NewLine & "You could ensure that you're running this as Admin, maybe that's the problem.", "Dang!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return
+                    Else
+                        ' Successfully imported the backed up bcd file
+                        strType = "Your backed up BCD has been "
+                        strChoice = "imported [Pending reboot]."
+                    End If
+                Else
+                    ' User backed out by clicking the "No" button, so just exit the action
+                    Return
+                End If
+            End If
+
+            ' --
+
+            If strChoice.Length > 0 AndAlso MessageBox.Show(strType & strChoice & Environment.NewLine & Environment.NewLine & " You need to restart your computer for it to take effect, want to do that right now?" & Environment.NewLine & Environment.NewLine & " (Be sure to save everything you need to first.)", "Success", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                RebootComputer()
+            End If
 
     End Sub
 
@@ -96,7 +113,7 @@
 
     Public Sub NavigateToGd()
         ' Navigate to a GeekDrop.
-        System.Diagnostics.Process.Start("http://geekdrop.com")
+        Process.Start("http://geekdrop.com")
     End Sub
 
     Private Sub btnAbout_Click(sender As Object, e As EventArgs) Handles btnAbout.Click
@@ -136,6 +153,9 @@
                 ' Great success, whilst performing the BCD action
                 SetChangeInfo() 'TODO: Should add a handler here to only set the change info NOT on BCD backing up
                 Return 1
+            ElseIf output.Contains("The entry was successfully copied to {") Then
+                'TODO: parse for the new GUID to use
+                'Return 1
             Else
                 ' Something pooped out
                 Return 0
@@ -167,12 +187,12 @@
             End If
         Next
 
-        BCDEdit = intResult
+        BcdEdit = intResult
 
     End Function
 
     Private Sub RebootComputer()
-        System.Diagnostics.Process.Start("shutdown", "-r -t 00")
+        Process.Start("shutdown", "-r -t 00")
     End Sub
 
     Private Function BackupBCD() As Integer
@@ -218,7 +238,7 @@
 
         ' --
 
-        ' Check if we've backed up any BCD's during a previous change, if so, enable the Restore option TODO: Need to detect any .bcdX files now
+        ' Check if we've backed up any BCD's during a previous change, if so, enable the Restore option
         radRestore.Tag = "Checking"
         frmBackups.Show()
 
@@ -243,7 +263,7 @@
         Dim strSplit() As String = Split(HVCpl(), ",")
 
         If strSplit(0) = "1" Then
-            System.Diagnostics.Process.Start(strSplit(1))
+            Process.Start(strSplit(1))
         End If
 
     End Sub
@@ -255,7 +275,7 @@
 
         Dim strHV As String = Environment.SystemDirectory.ToString() & "\virtmgmt.msc"
 
-        If System.IO.File.Exists(strHV) Then
+        If File.Exists(strHV) Then
             ' That would be a "Yes"
             HVCpl = "1," & strHV
         End If
@@ -284,7 +304,7 @@
         ' For the form moving code. Allows moving the form via dragging the logo image
 
         If e.Button = MouseButtons.Left Then
-            Dim mousePos As Point = Control.MousePosition
+            Dim mousePos As Point = MousePosition
             mousePos.Offset(mouseOffset.X, mouseOffset.Y)
             Location = mousePos
         End If

@@ -1,4 +1,6 @@
-﻿Public Class frmBackups
+﻿Imports System.IO
+
+Public Class frmBackups
 
     Private Sub frmBackups_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' Clears the listbox; enumerates any .bcdx (our custom extension) & shows them in the listbox
@@ -10,9 +12,9 @@
 
         lstBackups.Items.Clear()
 
-        Dim folderInfo As New IO.DirectoryInfo(Environment.SystemDirectory.ToString())
-        Dim arrFilesInFolder() As IO.FileInfo
-        Dim fileInFolder As IO.FileInfo
+        Dim folderInfo As New DirectoryInfo(Environment.SystemDirectory.ToString())
+        Dim arrFilesInFolder() As FileInfo
+        Dim fileInFolder As FileInfo
 
         arrFilesInFolder = folderInfo.GetFiles("*.bcdx")
 
